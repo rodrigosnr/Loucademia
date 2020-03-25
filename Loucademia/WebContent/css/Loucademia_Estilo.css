@@ -86,6 +86,7 @@ select
 {
 	border: 1px solid #8d02ae;
 	margin-bottom: 7px;
+	border-radius: 15px;
 }
 
 input[type=text]#nome,
