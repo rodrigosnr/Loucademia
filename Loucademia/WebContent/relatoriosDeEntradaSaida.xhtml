@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" lang="pt-br">
+
+	<ui:composition template="layout.xhtml">
+		<ui:define name="conteudo">
+
+			<h1>Relatório de Entradas e Saídas</h1>
+
+			<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
+				<div id="infoMessage">
+					<h:messages />
+				</div>
+			</h:panelGroup>
+
+			<br />
+
+			<form jsf:id="form">
+				<fieldset>
+					<legend>Parâmetros de Entradas e Saídas</legend>
+
+					<label for="id">Matrícula:</label>
+					<br />
+					<input type="text"
+					jsf:value="#{relatorioEntradaSaidaBean.matricula}" id="id" />
+					<br />
+					<label for="dataInicial">Data Inicial:</label>
+					<br />
+					<input	type="date" jsf:value="#{relatorioEntradaSaidaBean.dataInicial}" id="dataInicial">
+						<f:convertDateTime type="LocalDate" pattern="yyyy-MM-dd "/>
+					</input>
+					<br />
+					<label for="dataFinal">Data
+					Final:</label>
+					<br />
+					<input type="date" jsf:value="#{relatorioEntradaSaidaBean.dataFinal}" id="dataFinal" >
+						<f:convertDateTime type="LocalDate" pattern="yyyy-MM-dd "/>
+					</input>
+
+				</fieldset>
+
+				<br />
+				<input type="submit" value="Gerar relatório" jsf:action="#{relatorioEntradaSaidaBean.gerarRelatorio}"/>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Entrada</th>
+						<th>Saída</th>
+						<th>Duração</th>
+					</tr>
+					<tr>
+						<td>001</td>
+						<td>Rodrigo Ribeiro</td>
+						<td>10:00:00</td>
+						<td>11:00:00</td>
+						<td>01:00:00</td>
+					</tr>
+				</table>
+			</form>
+		</ui:define>
+	</ui:composition>
+</html>
