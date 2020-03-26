@@ -31,36 +31,49 @@
 					<label for="dataInicial">Data Inicial:</label>
 					<br />
 					<input	type="date" jsf:value="#{relatorioEntradaSaidaBean.dataInicial}" id="dataInicial">
-						<f:convertDateTime type="LocalDate" pattern="yyyy-MM-dd "/>
+						<f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
 					</input>
 					<br />
 					<label for="dataFinal">Data
 					Final:</label>
 					<br />
 					<input type="date" jsf:value="#{relatorioEntradaSaidaBean.dataFinal}" id="dataFinal" >
-						<f:convertDateTime type="LocalDate" pattern="yyyy-MM-dd "/>
+						<f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
 					</input>
 
 				</fieldset>
 
 				<br />
 				<input type="submit" value="Gerar relatório" jsf:action="#{relatorioEntradaSaidaBean.gerarRelatorio}"/>
+				
+				<h:panelGroup rendered="#{not empty relatorioEntradaSaidaBean.acessos}">
 				<table>
 					<tr>
-						<th>ID</th>
+						<th>Matrícula</th>
 						<th>Nome</th>
 						<th>Entrada</th>
 						<th>Saída</th>
 						<th>Duração</th>
 					</tr>
+					<ui:repeat var="a" value="#{relatorioEntradaSaidaBean.acessos}">
 					<tr>
-						<td>001</td>
-						<td>Rodrigo Ribeiro</td>
-						<td>10:00:00</td>
-						<td>11:00:00</td>
-						<td>01:00:00</td>
+						<td>#{a.aluno.matricula}</td>
+						<td>#{a.aluno.nome}</td>
+						<td>
+							<h:outputText value="#{a.entrada}">
+								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
+						</td>
+						<td>
+							<h:outputText value="#{a.saida}">
+								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
+						</td>
+						<td>#{a.calcularDuracao()}</td>
 					</tr>
+					</ui:repeat>
 				</table>
+				</h:panelGroup>
 			</form>
 		</ui:define>
 	</ui:composition>
