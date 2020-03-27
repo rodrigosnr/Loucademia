@@ -7,18 +7,8 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf" lang="pt-br">
 
 <ui:composition template="layout.xhtml">
-	<ui:define name="conteudo">
-		
-				<h1>Controle de Acesso</h1>
-		
-		<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-			<div id="infoMessage">
-			<h:messages />
-			</div>
-		</h:panelGroup>
-		
-		<br />
-		
+	<ui:param name="title" value="Controle de Acesso" />
+	<ui:define name="conteudo">		
 		<form jsf:id="form">
 			<fieldset>
 				<legend>Parâmetros de Acesso</legend>
@@ -33,7 +23,6 @@
 			<br /> 
 			
 			<input type="submit" value="Registrar acesso" jsf:action="#{controleAcessoBean.registrarAcesso}"/>
-			
 		</form>
 	</ui:define>
 </ui:composition>
