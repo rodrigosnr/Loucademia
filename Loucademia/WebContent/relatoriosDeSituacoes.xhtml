@@ -20,8 +20,10 @@
 
 				<label for="situacao">Situação</label><br /> 
 				<select
-					jsf:value="#{relatorioSituacoesBean.situacao}" id="situacao" size="0">
+					jsf:value="#{relatorioSituacoesBean.situacao}" id="situacao" size="0" jsf:label="Situação">
+					<f:selectItem itemLabel="Escolha..." itemValue="" />
 					<f:selectItems value="#{dataBean.situacoes}" />
+					<f:validateRequired />
 				</select>
 
 			</fieldset>
